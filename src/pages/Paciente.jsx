@@ -148,11 +148,21 @@ export default function Paciente() {
                 <div className="empty-text">Sin consultas registradas</div>
               </div>
             ) : consultas.map(c => (
-              <div key={c.id} className="consulta-card">
-                <div className="consulta-fecha">
-                  {fmtDate(c.fecha)}{c.proximo_turno ? ` · Próx: ${fmtDate(c.proximo_turno)}` : ''}
+              <div
+                key={c.id}
+                className="consulta-card"
+                onClick={() => navigate(`/paciente/${id}/consulta/${c.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ flex: 1 }}>
+                    <div className="consulta-fecha">
+                      {fmtDate(c.fecha)}{c.proximo_turno ? ` · Próx: ${fmtDate(c.proximo_turno)}` : ''}
+                    </div>
+                    <div className="consulta-motivo">{c.motivo || 'Sin motivo registrado'}</div>
+                  </div>
+                  <div style={{ color: '#bbb', fontSize: 20, marginLeft: 8 }}>›</div>
                 </div>
-                <div className="consulta-motivo">{c.motivo || 'Sin motivo registrado'}</div>
                 {((c.pie?.length || 0) + (c.patologias?.length || 0) + (c.sudoracion?.length || 0)) > 0 && (
                   <div className="tag-group">
                     {(c.pie || []).map(p => <span key={p} className="tag">Pie {p === 'D' ? 'Derecho' : 'Izquierdo'}</span>)}
