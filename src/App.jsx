@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import NuevoPaciente from './pages/NuevoPaciente'
 import Paciente from './pages/Paciente'
 import NuevaConsulta from './pages/NuevaConsulta'
+import DetalleConsulta from './pages/DetalleConsulta'
 
 export default function App() {
   const [session, setSession] = useState(undefined)
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/nuevo-paciente" element={<NuevoPaciente />} />
         <Route path="/paciente/:id" element={<Paciente />} />
         <Route path="/paciente/:id/nueva-consulta" element={<NuevaConsulta />} />
+        <Route path="/paciente/:id/consulta/:consultaId" element={<DetalleConsulta />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
